@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
  * Created by wjplaud83 on 10/13/16.
  */
 
-public class HabitContract {
+public final class HabitContract {
 
     // this is to prevent accidental instantiation of the contract class,
     // give it an empty constructor
@@ -21,7 +21,7 @@ public class HabitContract {
     public static final class HabitEntry implements BaseColumns {
 
         /** Name of the database table for your habits */
-        public final static TABLE_NAME ="habits";
+        public final static String TABLE_NAME ="habits";
 
         /**
          * unique ID number for the habit done (this is fort eh database table only)
@@ -36,22 +36,25 @@ public class HabitContract {
         public final static String COLUMN_HABIT_NAME = "name";
 
         /**
-         * Gender
+         * Gender of the person
+         *
+         * The only possible values are {@link #GENDER_UNKNOWN}, {@link #GENDER_MALE},
+         * or {@link #GENDER_FEMALE}.
+         *
          * TYPE: INTEGER
          */
-        public final static String COLUMN_HABIT_GENDER = "Gender";
-
+        public final static String COLUMN_HABIT_GENDER = "gender";
         /**
          * Type of exercise done
          * TYPE: Text
          */
-        public final static String COLUMN_HABIT_EXERCISE = "Exercise";
+        public final static String COLUMN_HABIT_EXERCISE = "exercise";
 
         /**
          * your weight
          * TYPE: Integer
          */
-        public final static String COLUMN_HABIT_WEIGHT = "Your weight";
+        public final static String COLUMN_HABIT_WEIGHT = "weight";
 
         /**
          * Possible values for the gender of the person.
@@ -59,6 +62,5 @@ public class HabitContract {
         public static final int GENDER_UNKNOWN = 0;
         public static final int GENDER_MALE = 1;
         public static final int GENDER_FEMALE = 2;
-
     }
 }

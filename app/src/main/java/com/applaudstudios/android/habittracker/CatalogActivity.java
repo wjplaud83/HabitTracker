@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,7 +67,7 @@ public class CatalogActivity extends AppCompatActivity {
                 HabitContract.HabitEntry.COLUMN_HABIT_NAME,
                 HabitContract.HabitEntry.COLUMN_HABIT_EXERCISE,
                 HabitContract.HabitEntry.COLUMN_HABIT_GENDER,
-                HabitContract.HabitEntry.COLUMN_HABIT_WEIGHT};
+                HabitContract.HabitEntry.COLUMN_HABIT_WEIGHT };
 
         // Perform a query on the habits in the table
         Cursor cursor = db.query(
@@ -87,8 +88,8 @@ public class CatalogActivity extends AppCompatActivity {
             // _id - name - gender - exercise - weight
             //
             // In the while loop below, iterate through the rows of the cursor and display
-            // the information from each column in this roder
-            displayView.setText("the habits table contains " + cursor.getCount() + " habit.\n\n");
+            // the information from each column in this order
+            displayView.setText("The habits table contains " + cursor.getCount() + " habits.\n\n");
             displayView.append(HabitContract.HabitEntry._ID + " _ " +
                     HabitContract.HabitEntry.COLUMN_HABIT_NAME + " _ " +
                     HabitContract.HabitEntry.COLUMN_HABIT_EXERCISE + " _ " +
@@ -119,7 +120,7 @@ public class CatalogActivity extends AppCompatActivity {
                         currentWeight));
             }
         } finally {
-            // always close the cursor when you sre done reading from it.
+            // always close the cursor when you are done reading from it.
             // this releases resources and make it invalid
             cursor.close();
         }
@@ -135,10 +136,10 @@ public class CatalogActivity extends AppCompatActivity {
         //Create a ContentValues object where column names are the key
         // and pet attributes are the values
         ContentValues values = new ContentValues();
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_NAME, "Name");
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_GENDER, HabitContract.HabitEntry.GENDER_UNKNOWN);
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_EXERCISE, "Exercise");
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT_WEIGHT, 0);
+        values.put(HabitContract.HabitEntry.COLUMN_HABIT_NAME, "Gloria");
+        values.put(HabitContract.HabitEntry.COLUMN_HABIT_GENDER, HabitContract.HabitEntry.GENDER_FEMALE);
+        values.put(HabitContract.HabitEntry.COLUMN_HABIT_EXERCISE, "Squats");
+        values.put(HabitContract.HabitEntry.COLUMN_HABIT_WEIGHT, 120);
 
         // insert a new row of habits into the database, returning the id of that new row.
         // the first argument for db.insert() is the habit table name.
@@ -148,7 +149,6 @@ public class CatalogActivity extends AppCompatActivity {
         // The third argument id the ContentsValue object containing the info for teh habit.
         long newRowId = db.insert(HabitContract.HabitEntry.TABLE_NAME, null, values);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu from the res/menu/menu_catalog.xml file.
@@ -162,7 +162,7 @@ public class CatalogActivity extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Insert Data" menu option
-            case R.id.action_insert_data:
+            case R.id.action_insert_dummy_data:
                 insertHabit();
                 displayDatabaseInfo();
                 return true;
